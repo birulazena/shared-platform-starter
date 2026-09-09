@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="platformLoggingEnabled"
+                    source="logistics.parent-service.logging.enabled" defaultValue="true"/>
+    <springProperty scope="context" name="platformConsoleEnabled"
+                    source="logistics.parent-service.logging.console-enabled" defaultValue="true"/>
+
+    <appender name="PLATFORM_JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="org.springframework.boot.logging.logback.StructuredLogEncoder">
+            <format>logstash</format>
+        </encoder>
+    </appender>
+
+    <appender name="PLATFORM_REDACTING_FAN_OUT"
+              class="com.hz.logistics.parentservice.autoconfigure.logging.RedactingFanOutAppender">
+        <pipelineEnabled>${platformLoggingEnabled}</pipelineEnabled>
+        <consoleEnabled>${platformConsoleEnabled}</consoleEnabled>
+        <appender-ref ref="PLATFORM_JSON_CONSOLE"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="PLATFORM_REDACTING_FAN_OUT"/>
+    </root>
+</configuration>

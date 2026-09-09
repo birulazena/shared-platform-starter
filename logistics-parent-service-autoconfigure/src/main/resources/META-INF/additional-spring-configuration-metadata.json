@@ -1,0 +1,65 @@
+{
+  "groups": [
+    {
+      "name": "logistics.parent-service",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.PlatformProperties",
+      "description": "Shared platform configuration."
+    },
+    {
+      "name": "logistics.parent-service.security",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.SecurityProperties",
+      "description": "JWT resource-server security defaults."
+    },
+    {
+      "name": "logistics.parent-service.tracing",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.TracingProperties",
+      "description": "W3C trace propagation and OTLP settings."
+    },
+    {
+      "name": "logistics.parent-service.tracing.otlp",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.TracingProperties$OtlpProperties",
+      "description": "Optional OTLP exporter settings."
+    },
+    {
+      "name": "logistics.parent-service.metrics",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.MetricsProperties",
+      "description": "Micrometer policy settings."
+    },
+    {
+      "name": "logistics.parent-service.errors",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.ErrorProperties",
+      "description": "ProblemDetail error settings."
+    },
+    {
+      "name": "logistics.parent-service.logging",
+      "type": "com.hz.logistics.parentservice.autoconfigure.properties.LoggingProperties",
+      "description": "Structured logging and redaction settings."
+    }
+  ],
+  "properties": [
+    { "name": "logistics.parent-service.security.enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether platform security defaults are eligible to activate." },
+    { "name": "logistics.parent-service.security.issuer", "type": "java.net.URI", "description": "Absolute HTTP(S) issuer used by the default JWT decoder." },
+    { "name": "logistics.parent-service.security.public-endpoints", "type": "java.util.List<java.lang.String>", "defaultValue": [], "description": "Permit-only application path patterns." },
+    { "name": "logistics.parent-service.security.public-actuator-endpoints", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether present and exposed health/info actuator endpoints are public." },
+    { "name": "logistics.parent-service.security.role-claims-path", "type": "java.lang.String", "description": "Optional dot-separated nested JWT claim path used for role extraction." },
+    { "name": "logistics.parent-service.security.role-prefix", "type": "java.lang.String", "defaultValue": "ROLE_", "description": "Prefix applied to extracted role authorities; an empty prefix is valid." },
+    { "name": "logistics.parent-service.tracing.enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether platform tracing and correlation integration are eligible to activate." },
+    { "name": "logistics.parent-service.tracing.sampling-probability", "type": "java.math.BigDecimal", "defaultValue": 0.1, "description": "Inclusive probability used for recording/export sampling." },
+    { "name": "logistics.parent-service.tracing.otlp.endpoint", "type": "java.net.URI", "description": "Absolute exporter endpoint, or null to keep export disabled." },
+    { "name": "logistics.parent-service.tracing.otlp.protocol", "type": "com.hz.logistics.parentservice.autoconfigure.properties.TracingProperties$OtlpProtocol", "defaultValue": "HTTP_PROTOBUF", "description": "OTLP transport protocol." },
+    { "name": "logistics.parent-service.tracing.otlp.headers", "type": "java.util.Map<java.lang.String,java.lang.String>", "defaultValue": {}, "description": "Export headers; values are secrets and must never be logged." },
+    { "name": "logistics.parent-service.tracing.otlp.timeout", "type": "java.time.Duration", "defaultValue": "10s", "description": "Maximum time allotted to one exporter operation." },
+    { "name": "logistics.parent-service.tracing.otlp.compression", "type": "com.hz.logistics.parentservice.autoconfigure.properties.TracingProperties$OtlpCompression", "defaultValue": "GZIP", "description": "OTLP payload compression." },
+    { "name": "logistics.parent-service.metrics.enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether platform metrics policy is eligible to activate." },
+    { "name": "logistics.parent-service.metrics.common-tags", "type": "java.util.Map<java.lang.String,java.lang.String>", "defaultValue": {}, "description": "Bounded, non-sensitive common tags applied by the platform policy." },
+    { "name": "logistics.parent-service.errors.enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether platform error handlers are eligible to activate." },
+    { "name": "logistics.parent-service.errors.detail-policy", "type": "com.hz.logistics.parentservice.autoconfigure.properties.ErrorProperties$DetailPolicy", "defaultValue": "GENERIC", "description": "Detail disclosure policy; GENERIC is the safe default." },
+    { "name": "logistics.parent-service.errors.include-instance", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether a safe request path is included as ProblemDetail.instance." },
+    { "name": "logistics.parent-service.logging.enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether the platform logging contribution is eligible to activate." },
+    { "name": "logistics.parent-service.logging.console-enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether the default structured console sink is enabled." },
+    { "name": "logistics.parent-service.logging.otel-enabled", "type": "java.lang.Boolean", "defaultValue": true, "description": "Whether sanitized events are forwarded to an available OTel log pipeline." },
+    { "name": "logistics.parent-service.logging.redaction-mask", "type": "java.lang.String", "defaultValue": "[REDACTED]", "description": "Replacement value used by the baseline and configured redaction rules." },
+    { "name": "logistics.parent-service.logging.additional-sensitive-fields", "type": "java.util.Set<java.lang.String>", "defaultValue": [], "description": "Additional case-insensitive exact fields, headers, or query parameter names." },
+    { "name": "logistics.parent-service.logging.additional-sensitive-paths", "type": "java.util.Set<java.lang.String>", "defaultValue": [], "description": "Additional dot-separated structured paths to redact." }
+  ]
+}

@@ -1,0 +1,17 @@
+.gradle/
+/.kotlin/
+**/build/
+.idea/
+*.iml
+out/
+target/
+*.class
+*.jar
+*.log
+.env*
+!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/

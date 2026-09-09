@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: platform-webflux-adoption
+  main:
+    web-application-type: reactive
+
+management:
+  otlp:
+    metrics:
+      export:
+        enabled: false
+
+logistics:
+  parent-service:
+    security:
+      issuer: https://identity.example.test/realms/logistics
+    tracing:
+      sampling-probability: 1.0
+    metrics:
+      common-tags:
+        environment: adoption-test
+    errors:
+      detail-policy: GENERIC
+    logging:
+      redaction-mask: "[REDACTED]"

@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "authorization": "Bearer bearer-corpus-canary",
+    "jwt": "eyJhbGciOiJub25lIn0.eyJzdWIiOiJjb3JwdXMtY2FuYXJ5In0.corpus-signature",
+    "password": "password-corpus-canary",
+    "accessToken": "access-token-corpus-canary",
+    "refreshToken": "refresh-token-corpus-canary",
+    "idToken": "id-token-corpus-canary",
+    "secret": "secret-corpus-canary",
+    "apiKey": "api-key-corpus-canary"
+  },
+  "configured": {
+    "customerEmail": "customer.corpus@example.test",
+    "recipientPhone": "+48111222333"
+  },
+  "nearMatches": [
+    "tokenization-report-is-safe",
+    "authorized-shipments-summary"
+  ]
+}
